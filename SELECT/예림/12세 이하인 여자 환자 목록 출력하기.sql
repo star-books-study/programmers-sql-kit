@@ -1,0 +1,12 @@
+SELECT
+  PT_NAME,
+  PT_NO,
+  GEND_CD,
+  AGE,
+  CASE WHEN TLNO IS NULL THEN 'NONE' ELSE TLNO END AS TLNO
+FROM PATIENT
+WHERE AGE <= 12 AND GEND_CD = 'W'
+ORDER BY AGE DESC, PT_NAME
+
+-- CASE WHEN 문법 찾아봤다.
+-- ELSE는 생략 가능하며, 생략 시 NULL이 기본값이 된다. => NULL이 아니라 TLNO가 그대로 나와야 하므로 생략 X
