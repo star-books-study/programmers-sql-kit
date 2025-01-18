@@ -1,0 +1,17 @@
+SELECT
+    INFO.ITEM_ID,
+    ITEM_NAME
+FROM ITEM_INFO INFO
+JOIN ITEM_TREE TREE ON INFO.ITEM_ID = TREE.ITEM_ID
+WHERE PARENT_ITEM_ID IS NULL
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 2분
+
+✅ 리뷰
+-
+
+✅ 알아두기
+-
+*/
