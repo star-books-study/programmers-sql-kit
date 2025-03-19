@@ -1,0 +1,9 @@
+SELECT ID, EMAIL, FIRST_NAME, LAST_NAME
+FROM DEVELOPERS
+WHERE SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'Python')
+    OR SKILL_CODE & (SELECT CODE FROM SKILLCODES WHERE NAME = 'C#')
+ORDER BY ID
+
+
+-- 문제에 나와 있는 CODE가 각각 256, 1024이길래 그대로 적용했더니 하나의 테스트 케이스만 통과했다
+-- 서브 쿼리를 이용하는 것이었음 + & 연산 잘 사용하기
