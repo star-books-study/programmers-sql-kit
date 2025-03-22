@@ -1,0 +1,16 @@
+SELECT A.ID,
+CASE
+    WHEN A.PER <= 0.25 THEN 'CRITICAL'
+    WHEN A.PER <= 0.5 THEN 'HIGH'
+    WHEN A.PER <= 0.75 THEN 'MEDIUM'
+    ELSE 'LOW'
+END AS COLONY_NAME
+FROM(
+    SELECT ID,
+    PERCENT_RANK() OVER (ORDER BY SIZE_OF_COLONY DESC) AS PER
+    FROM ECOLI_DATA
+) AS A
+ORDER BY A.ID
+
+-- 답 보고 풀었던 문제
+-- PERCENT_RANK() : 상대 순위 함수로, 현재 행 값에 대해 0~1 사이의 상대값을 리턴한다.
