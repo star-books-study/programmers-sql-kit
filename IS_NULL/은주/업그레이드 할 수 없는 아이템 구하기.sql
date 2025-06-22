@@ -46,7 +46,6 @@ WHERE 1=1
     -- PARENT_ITEM_ID 에 있는 번호들의 ITEM_ID 는 출력 안되어야 함 (업그레이드 가능한 중간 지점 아이템이기 때문)
 ORDER BY INFO.ITEM_ID DESC
 
-
 /* 
 🔼 스스로 풀었는가?
 ☑️ 소요 시간 : 30분
@@ -73,7 +72,6 @@ WHERE 1=1
     )
     -- PARENT_ITEM_ID 에 있는 번호들의 ITEM_ID 는 출력 안되어야 함 (업그레이드 가능한 중간 지점 아이템이기 때문)
 ORDER BY INFO.ITEM_ID DESC
-
 
 ✅ 알아두기
 

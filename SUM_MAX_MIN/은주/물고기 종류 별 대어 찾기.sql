@@ -9,10 +9,9 @@ WHERE FI.LENGTH = (
     )
 ORDER BY FI.ID
 
-
 /* 
 ✅ 스스로 풀었는가?
-✅ 소요 시간 : 27분
+☑️ 소요 시간 : 27분
 
 ✅ 리뷰
 - GROUP BY 를 활용해서 FISH_TYPE 마다 MAX 값을 구한다. 
