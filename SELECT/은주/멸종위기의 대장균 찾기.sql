@@ -1,8 +1,77 @@
+-- ❌ 틀린 풀이
+WITH ED_FAMILY AS (
+    SELECT ED1.ID, ED1.PARENT_ID AS P_ID, ED2.PARENT_ID AS PP_ID, ED3.PARENT_ID AS PPP_ID
+    FROM ECOLI_DATA ED1
+    LEFT JOIN ECOLI_DATA ED2
+        ON ED1.PARENT_ID = ED2.ID
+    LEFT JOIN ECOLI_DATA ED3
+        ON ED2.PARENT_ID = ED3.ID
+),
+ED_GENERATION AS (
+    SELECT 
+        ID, 
+        CASE
+            WHEN P_ID IS NULL THEN 1
+            WHEN PP_ID IS NULL THEN 2
+            WHEN PPP_ID IS NULL THEN 3
+            ELSE 4 -- 최대 4세대까지만 올바르게 판단 가능한 로직
+        END AS GENERATION,
+        EXISTS(
+            SELECT *
+            FROM ECOLI_DATA ED
+            WHERE ED.PARENT_ID = ED_FAMILY.ID 
+            -- 자식이 있는 지 여부 / parent_id 에 자신의 id 를 갖고 있는 게 있는지 확인.
+        ) AS HAS_CHILD 
+    FROM ED_FAMILY
+)
+
+SELECT
+    COUNT(*) AS COUNT,
+    GENERATION
+FROM ED_GENERATION
+WHERE HAS_CHILD = 0
+GROUP BY GENERATION
+ORDER BY GENERATION
+
+
+-- ⭕️ 맞는 풀이
+WITH RECURSIVE GENERATION_CTE AS (
+    -- 1세대
+    SELECT ID, 1 AS GENERATION
+    FROM ECOLI_DATA
+    WHERE PARENT_ID IS NULL
+
+    UNION ALL
+
+    -- 자식 = 부모 + 1세대
+    SELECT E.ID, G.GENERATION + 1
+    FROM ECOLI_DATA E
+    JOIN GENERATION_CTE G ON E.PARENT_ID = G.ID
+),
+
+-- 누군가의 부모로 등장한 적 있는 (=자식이 있는) 세균 ID 찾기
+CHILDREN_CTE AS (
+    SELECT DISTINCT PARENT_ID AS ID
+    FROM ECOLI_DATA
+    WHERE PARENT_ID IS NOT NULL
+)
+
+-- 자식이 없는 세균만 필터링
+SELECT
+    G.GENERATION,
+    COUNT(*) AS COUNT
+FROM GENERATION_CTE G
+LEFT JOIN CHILDREN_CTE C ON G.ID = C.ID
+WHERE C.ID IS NULL -- 자식이 없는 세균만 조회
+GROUP BY G.GENERATION
+ORDER BY G.GENERATION;
+
 /* 
 ✅ 스스로 풀었는가?
-☑️ 소요 시간 :
+❌ 소요 시간 : 49분
 
 ✅ 리뷰
+- 
 
 ✅ 알아두기
 - 
