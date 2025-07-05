@@ -1,0 +1,19 @@
+SELECT
+    AI.ANIMAL_ID,
+    AI.NAME
+FROM ANIMAL_INS AI
+JOIN ANIMAL_OUTS AO ON AI.ANIMAL_ID = AO.ANIMAL_ID
+WHERE AI.DATETIME - AO.DATETIME > 0
+ORDER BY AI.DATETIME
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 3분
+
+✅ 리뷰
+- 
+
+✅ 알아두기
+- DATETIME 타입도 연산자로 날짜 대소 비교 가능
+
+*/

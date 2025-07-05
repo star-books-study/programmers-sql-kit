@@ -1,0 +1,20 @@
+SELECT
+    AI.NAME,
+    AI.DATETIME
+FROM ANIMAL_INS AI
+LEFT JOIN ANIMAL_OUTS AO ON AI.ANIMAL_ID = AO.ANIMAL_ID
+WHERE AO.ANIMAL_ID IS NULL
+ORDER BY AI.DATETIME
+LIMIT 3
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 3분
+
+✅ 리뷰
+- 
+
+✅ 알아두기
+-
+
+*/
