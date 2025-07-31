@@ -1,0 +1,24 @@
+SELECT
+    SUM(HG.SCORE) AS SCORE,
+    HE.EMP_NO,
+    HE.EMP_NAME,
+    HE.POSITION,
+    HE.EMAIL
+FROM HR_EMPLOYEES HE
+JOIN HR_GRADE HG
+    ON HE.EMP_NO = HG.EMP_NO
+WHERE HG.YEAR = 2022
+GROUP BY HE.EMP_NO
+ORDER BY SCORE DESC
+LIMIT 1
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 7분
+
+✅ 리뷰
+-
+
+✅ 알아두기
+-
+*/
