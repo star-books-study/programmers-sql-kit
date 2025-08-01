@@ -1,0 +1,27 @@
+SELECT
+    MEMBER_NAME,
+    REVIEW_TEXT, 
+    DATE_FORMAT(REVIEW_DATE, REVIEW_DATE) AS REVIEW_DATE
+FROM MEMBER_PROFILE MP
+JOIN REST_REVIEW RR 
+    ON MP.MEMBER_ID = RR.MEMBER_ID
+WHERE MP.MEMBER_ID = (
+    SELECT 
+        MEMBER_ID
+    FROM REST_REVIEW
+    GROUP BY MEMBER_ID
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+)
+ORDER BY REVIEW_DATE, REVIEW_TEXT
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 4분
+
+✅ 리뷰
+- DATE_FORMAT 함수에 넣어야 하는 날짜 변환 문자열 형태가 기억이 안나서 이것저것 해보다가 됨 ㅎㅎ..
+
+✅ 알아두기
+- DATE_FORMAT(datetime, '%Y-%m-%d') 
+*/
