@@ -1,0 +1,20 @@
+SELECT
+    HD.DEPT_ID,
+    DEPT_NAME_EN,
+    ROUND(AVG(SAL), 0) AS AVG_SAL
+FROM HR_DEPARTMENT HD
+JOIN HR_EMPLOYEES HE
+    ON HD.DEPT_ID = HE.DEPT_ID
+GROUP BY HD.DEPT_ID
+ORDER BY AVG_SAL DESC
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 3분
+
+✅ 리뷰
+-
+
+✅ 알아두기
+-
+*/
