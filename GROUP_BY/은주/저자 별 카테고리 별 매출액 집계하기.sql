@@ -1,0 +1,20 @@
+SELECT A.AUTHOR_ID, AUTHOR_NAME, CATEGORY, SUM(PRICE * SALES) AS TOTAL_SALES
+FROM BOOK B
+JOIN BOOK_SALES BS
+    ON B.BOOK_ID = BS.BOOK_ID
+JOIN AUTHOR A
+    ON B.AUTHOR_ID = A.AUTHOR_ID
+WHERE YEAR(SALES_DATE) = 2022 AND MONTH(SALES_DATE) = 1
+GROUP BY AUTHOR_ID, CATEGORY
+ORDER BY AUTHOR_ID, CATEGORY DESC
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 10분
+
+✅ 리뷰
+- 분명 저번에는 정신 없이 푸느라고 결국 못풀었는데, 문제를 차분히 읽고 부분부분 구현하며 살을 덧붙여 나가니 풀 수 있었다.
+
+✅ 알아두기
+-
+*/
