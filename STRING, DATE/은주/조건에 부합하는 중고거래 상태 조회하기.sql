@@ -1,0 +1,27 @@
+SELECT
+    BOARD_ID,
+    WRITER_ID,
+    TITLE,
+    PRICE,
+    CASE 
+        WHEN STATUS = 'SALE' 
+            THEN '판매중'
+        WHEN STATUS = 'RESERVED' 
+            THEN '예약중'      
+        WHEN STATUS = 'DONE' 
+            THEN '거래완료'
+    END AS STATUS
+FROM USED_GOODS_BOARD
+WHERE CREATED_DATE LIKE '2022-10-05%'
+ORDER BY BOARD_ID DESC
+
+/* 
+✅ 스스로 풀었는가?
+☑️ 소요 시간 : 3분
+
+✅ 리뷰
+- 
+
+✅ 알아두기
+- 
+*/
